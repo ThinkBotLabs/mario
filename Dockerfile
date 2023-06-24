@@ -1,19 +1,20 @@
 # Build stage
-FROM golang:1.17 AS build
+FROM golang:1.20 
+#AS build
 
 WORKDIR /app
 
 COPY . .
 
-RUN go build -o myapp
+RUN go build -o /mario
 
-# Final stage
-FROM golang:1.17
+# # Final stage
+# FROM golang:1.20
 
-COPY --from=build /app/myapp /myapp
-
-# Run the service indefinitely
-CMD ["/myapp"]
+# COPY --from=build /app/mario /mario
 
 # Expose any necessary ports
 EXPOSE 8080
+
+# Run the service indefinitely
+CMD ["/mario"]
